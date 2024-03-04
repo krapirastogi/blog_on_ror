@@ -2,10 +2,19 @@ class ArticlesController < ApplicationController
   http_basic_authenticate_with name: "Krapi", password: "abcd1234", except: [:index, :show]
   def index
     @articles = Article.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @articles  } 
+    end
   end
 
   def show
-    @article=Article.find(params[:id])
+    @article=Article.find_by_id(params[:id])
+    unless @article.present?
+      flash[:notice]="Article id not found"
+      redirect_to articles_path
+    end
   end
 
   def new
