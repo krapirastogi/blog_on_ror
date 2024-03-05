@@ -1,32 +1,10 @@
-<h1>Welcome to the blog Application</h1>
-
 <% if user_signed_in? %>
   <h3>Welcome Home, <%= current_user.email %><p id="notice" ><%=notice%></p></h3>
   Our blog has <%= Article.public_count%> articles and counting!
 
- 
-<%
-=begin%>
- <ul>
-  <% @articles.each do |article| %>
-  <% unless article.archived? %>
-    <li>
-      <%= link_to article.title, article %>
-    </li>
-    <% end %>
-  <% end %>
-</ul>  
-<%
-=end%>
-
-
-
-
-
-
- <table >
-<tr >
-<th>Article name</th>
+<table style="border:1px solid">
+<tr>
+<th >Article name</th>
 <th>Created by</th>
 <th>Access rights</th>
 </tr>
@@ -38,45 +16,25 @@
 <td><ul>
  <li><%=link_to "Edit Article", edit_article_path(article.id)%></li> 
  <li><%=link_to "Show Article", article_path(article.id)%></li>
- <li><%= link_to "Destroy", article_path(article.id), data: {
+ <li><%= link_to "Delete Article", article_path(article.id), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %></li>
 </ul></td>
 <%end%>
 </tr>
-</table> 
+</table>
+
 <br/>
 <%= link_to "New Article", new_article_path %>
 <br/>
   <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
+
+
 <% else %>
-  <h1>Welcome to the blog Application</h1>
+  <h1 style="text-align:center;color:blue;">KR Authentication System</h1>
 
   <%= link_to 'Sign in', new_user_session_path %>
 <% end %>
- <%
-=begin%>
- <%unless user.sign_in?%>
-Our blog has <%= Article.public_count%> articles and counting!
-<p id="notice" ><%=notice%></p>
-<ul>
-  <% @articles.each do |article| %>
-  <% unless article.archived? %>
-    <li>
-      <%= link_to article.title, article %>
-    </li>
-    <% end %>
-  <% end %>
-</ul>
-<%end%> 
-<%
-=end%>
-
-<%
-=begin%>
  
- <%= link_to "New Article", new_article_path %>  
-<%
-=end%> 
 
