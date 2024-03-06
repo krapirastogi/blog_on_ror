@@ -2,10 +2,10 @@
   <h3>Welcome Home, <%= current_user.email %><p id="notice" ><%=notice%></p></h3>
   Our blog has <%= Article.public_count%> articles and counting!
 
-<table style="border:1px solid">
+<table >
 <tr>
 <th >Article name</th>
-<th>Created by</th>
+<th >Created by</th>
 <th>Access rights</th>
 </tr>
 <% @articles.each do |article| %>
@@ -41,6 +41,11 @@
 
 <% else %>
   <h1 style="text-align:center;color:blue;">KR Authentication System</h1>
+
+<button><%= link_to "Krapi Article", articles_krapi_path,data:{
+   turbo_method: :krapi,
+  turbo_confirm: "Are you sure?"
+} %></button>
 
   <%= link_to 'Sign in', new_user_session_path %>
 <% end %>
