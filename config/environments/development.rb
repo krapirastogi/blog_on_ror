@@ -85,7 +85,7 @@ Rails.application.configure do
   port: 587,
   domain: 'gmail.com',
   user_name: 'krapirastogi@gmail.com',
-  password: 'icdmkvxbtuundxtl',
+  password: password,
   authentication:'plain',
   enable_starttls_auto: true  }
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
