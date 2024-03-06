@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   http_basic_authenticate_with name: "Krapi", password: "abcd1234", except: [:index, :show]
   def index
     @articles = Article.all
-
+     
     respond_to do |format|
       format.html
       format.json { render json: @articles  } 
@@ -19,12 +19,18 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    
   end
 
   def create
+    # puts(current_user.id)
+    # print(article_params)
+    # gets.chomp
     @article = Article.new(article_params)
-
+    @article.user_id = current_user.id
+   
     if @article.save
+      puts (@article)
       redirect_to @article
     else
       render :new, status: :unprocessable_entity
