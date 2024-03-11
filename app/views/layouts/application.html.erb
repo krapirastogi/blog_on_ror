@@ -9,20 +9,39 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <style>
-      table, th, tr, td {
-        border: 1px solid;
-        padding: 5px;
-        text-align:center;
-      }
+      
      
      
     </style>
   </head>
 
   <body>
-    <div class="container">
-      <p id="notice"><%= notice %></p>
-      <p id="alert"><%= alert %></p>
+
+
+     
+    <div class="m-0 p-0">
+    <%if user_signed_in? %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <%= link_to "WeWrite", articles_path, class:"custom-link text-white m-2"%>
+  
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to "Home", articles_path, class:"custom-link text-white m-2"%>
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+<%end%>
+    <%if notice %>
+      <p id="notice" class="alert alert-info m-3"><%= notice %></p>
+      <%end %>
+    <%if  alert%>
+      <p id="alert" class="alert alert-danger m-3"><%= alert %></p>
+      <%end %>
       <%= yield %>
     </div>
   </body>

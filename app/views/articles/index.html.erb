@@ -1,53 +1,48 @@
 <% if user_signed_in? %>
-  <h3>Welcome Home, <%= current_user.email %><p id="notice" ><%=notice%></p></h3>
-  Our blog has <%= Article.public_count%> articles and counting!
 
-<table >
-<tr>
-<th >Article name</th>
-<th >Created by</th>
-<th>Access rights</th>
-</tr>
-<% @articles.each do |article| %>
-<tr>
+  <div class="container">
+    <h3>Welcome Home, <%= current_user.email %></h3>
+    <p>Our blog has <%= Article.public_count %> articles and counting!</p>
 
-<td><%=link_to article.title,article%></td>
-<td><% unless article.user_id == nil %>
-<%= article.user.email %>
-<%end%>
-</td>
-<td><ul>
- <% if article.user_id == current_user.id %>
- <li><%=link_to "Edit Article", edit_article_path(article.id)%></li> 
- <li><%=link_to "Show Article", article_path(article.id)%></li>
- <li><%= link_to "Delete Article", article_path(article.id), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
-<%else%>
- 
- <li><%=link_to "Show Article", article_path(article.id)%></li>
- <%end%>
-</ul></td>
-<%end%>
-</tr>
-</table>
+    <table class="table table-bordered table-striped text-center">
+      <thead>
+        <tr>
+          <th>Article name</th>
+          <th>Created by</th>
+          <th>Access rights</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @articles.each do |article| %>
+          <tr>
+            <td><%= link_to article.title, article ,class:"custom-link text-blue"%></td>
+            <td><%= article.user&.email %></td>
+            <td>
+              <ul class="list-inline">
+                <% if article.user_id == current_user.id %>
+                  <li class="list-inline-item"><%= link_to "Edit Article", edit_article_path(article.id), class: "btn btn-warning m-1" %></li> 
+                  <li class="list-inline-item"><%= link_to "Show Article", article_path(article.id), class: "btn btn-primary m-1" %></li>
+                  <li class="list-inline-item"><%= link_to "Delete Article", article_path(article.id), class: "btn btn-danger m-1", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>
+                <% else %>
+                  <li class="list-inline-item"><%= link_to "Show Article", article_path(article.id), class: "btn btn-primary m-1" %></li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<br/>
-<%= link_to "New Article", new_article_path %>
-<br/>
-  <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
-
-
+    
+    <%= link_to "New Article", new_article_path, class: "btn btn-success m-1" %>
+    
+    <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-danger m-1" %>
+  </div>
 <% else %>
-  <h1 style="text-align:center;color:blue;">KR Authentication System</h1>
+  <div class="m-0 p-0 d-flex flex-column align-items-center justify-content-center">
+  <h1 class="text-primary p-3">KR Authentication System</h1>
+  
+  <%= link_to 'Sign in', new_user_session_path, class: "btn btn-primary mt-3" %>
+</div>
 
-<button><%= link_to "Krapi Article", articles_krapi_path,data:{
-   turbo_method: :krapi,
-  turbo_confirm: "Are you sure?"
-} %></button>
-
-  <%= link_to 'Sign in', new_user_session_path %>
 <% end %>
- 
-

@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root "articles#index"
   post 'articles/krapi', to: "articles#krapi"
   resources :articles do 
-    resources :comments ,except: [:destroy,:show]
+    resources :comments 
+  
+  delete 'article'
   end
   
 end
