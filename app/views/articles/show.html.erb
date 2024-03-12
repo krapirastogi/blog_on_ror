@@ -1,12 +1,12 @@
-<h1><%= @article.title %></h1>
+<h1 class="text-center"><%= @article.title %></h1>
 
-<p><%= @article.body %></p>
+<p class="text-center"><%= @article.body %></p>
 
 <ul>
  <% if @article.user_id == current_user.id %>
 
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article), data: {
+  <li><%= link_to "Edit", edit_article_path(@article),class:"custom-link text-link" %></li>
+  <li><%= link_to "Destroy", article_path(@article),class:"custom-link text-link", data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %></li>

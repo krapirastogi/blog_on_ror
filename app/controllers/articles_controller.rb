@@ -1,5 +1,9 @@
 class ArticlesController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:krapi]
+  # skip_before_action :verify_authenticity_token, only: [:krapi]
+  
+
+
+
 
   def index
     @articles = Article.all
@@ -42,7 +46,8 @@ class ArticlesController < ApplicationController
   def edit
   @article=Article.find(params[:id])
   end
-  def update
+
+  def update 
     @article= Article.find(params[:id])
     if @article.update(article_params)
       redirect_to @article
@@ -58,11 +63,9 @@ class ArticlesController < ApplicationController
     redirect_to root_path,status: :see_other
   end
 
-  def krapi
-    puts "hey done"
-  end
+ 
   private
   def article_params
-    params.require(:article).permit(:title, :body,:status)
+    params.require(:article).permit(:title, :body ,:user_id,:status)
   end
 end
