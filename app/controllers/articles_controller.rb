@@ -1,17 +1,19 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!
+  load_and_authorize_resource
+ 
+
   # skip_before_action :verify_authenticity_token, only: [:krapi]
+  # http_basic_authenticate_with name: "Krapi", password: "abcd1234", only: :destroy
   
-
-
-
 
   def index
     @articles = Article.all
      
-    respond_to do |format|
-      format.html
-      format.json { render json: @articles  } 
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: @articles  } 
+    # end
   end
 
   def show
@@ -56,13 +58,12 @@ class ArticlesController < ApplicationController
     end
   end
 
-
   def destroy
-    @article= Article.find(params[:id])
-    @articles.destroy
-    redirect_to root_path,status: :see_other
+    @article = Article.find(params[:id])
+    @article.destroy
+    redirect_to root_path, status: :see_other
   end
-
+  
  
   private
   def article_params

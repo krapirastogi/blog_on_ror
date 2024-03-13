@@ -10,6 +10,11 @@
   </div>
 
   <div>
+    
+  <%= time_ago_in_words(comment.created_at) %> ago 
+  </div>
+
+  <div>
     <%= link_to "Destroy Comment", [comment.article, comment],class:"custom-link", data: {
                   turbo_method: :delete,
                   turbo_confirm: "Are you sure?"
