@@ -8,16 +8,16 @@ class ArticlesController < ApplicationController
   
 
   def index
-    @articles = Article.all
+  #  @articles = Article.all
      
-    # respond_to do |format|
-    #   format.html
-    #   format.json { render json: @articles  } 
-    # end
+    respond_to do |format|
+      format.html
+      format.json { render json: @articles  } 
+    end
   end
 
   def show
-    @article=Article.find_by_id(params[:id])
+    # @article=Article.find_by_id(params[:id])
     unless @article.present?
       flash[:notice]="Article id not found"
       redirect_to articles_path
@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
 
 
   def edit
-    puts "hey there"
+    # puts "hey there"
 
   @article=Article.find(params[:id])
   unless @article.user_id == current_user.id
@@ -73,7 +73,8 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     unless @article.user_id == current_user.id
-      flash[:alert] = "You are not authorized to delete this article."
+      flash[:alert] = "You are not 
+       to delete this article."
       redirect_to articles_path 
       return
     end
