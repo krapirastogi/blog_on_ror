@@ -1,50 +1,62 @@
-<div class="m-2 p-2 container">
-  <div class="m-2 p-2 d-flex justify-content-center">
-    <div>
-      <h2 class="text-center">Sign up</h2>
+<h1 class="text-primary text-center">KR Authentication System</h1>
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-signup" }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
+  <div class="m-2 p-2">
+    <h2 class="text-center">Sign up</h2>
 
-      
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-signup" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
+      <div class="form-group row m-2">
+        <%= f.label :name, class: "col-sm-2 col-form-label text-right" %>
+        <div class="col-sm-10">
+          <%= f.text_field :name, class: "form-control", autofocus: true, autocomplete: "name", placeholder: "Enter your name" %>
         </div>
-        <div class="form-group row mb-2">
-          <%= f.label :email, class: "col-sm-2 col-form-label text-right" %>
-          <div class="col-sm-10">
-            <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email", placeholder: "Enter your email" %>
-          </div>
-        </div>
-
-        <div class="form-group row mb-2">
-          <%= f.label :password, class: "col-sm-2 col-form-label text-right" %>
-          <div class="col-sm-10">
-            <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %>
-            <%= f.password_field :password, class: "form-control", autocomplete: "new-password", placeholder: "Enter your password" %>
-          </div>
-        </div>
-
-       
-
-         <div class="form-group row mb-2">
-          <%= f.label :password_confirmation, class: "col-sm-2 col-form-label text-right" %>
-          <div class="col-sm-10">
-            <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password", placeholder: "Enter your password for confirmation" %>
-          </div>
-        </div>
-
-        <div class="form-group row mb-2">
-          <div class="col-sm-10 offset-sm-2">
-            <%= f.submit "Sign up", class: "btn btn-danger" %>
-          </div>
-        </div>
-      
-
-      <div class="form-group row mb-2">
-        <%= render "devise/shared/links" %>
       </div>
+
+      <div class="form-group row m-2">    
+        <%= f.label :gender, class: "col-sm-2 col-form-label text-right" %>
+        <div class="col-sm-10">
+          <span class="option">Male</span>
+          <%= f.radio_button :gender, "m" %>
+          <span class="option">Female</span>
+          <%= f.radio_button :gender, "f" %>
+        </div>
+      </div>
+
+      <div class="form-group row m-2">
+        <%= f.label :email, class: "col-sm-2 col-form-label text-right" %>
+        <div class="col-sm-10">
+          <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email", placeholder: "Enter your email" %>
+        </div>
+      </div>
+
+      <div class="form-group row m-2">
+        <%= f.label :password, class: "col-sm-2 col-form-label text-right" %>
+        <div class="col-sm-10">
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          <%= f.password_field :password, class: "form-control", autocomplete: "new-password", placeholder: "Enter your password" %>
+        </div>
+      </div>
+
+      <div class="form-group row m-2">
+        <%= f.label :password_confirmation, class: "col-sm-2 col-form-label text-right" %>
+        <div class="col-sm-10">
+          <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password", placeholder: "Enter your password for confirmation" %>
+        </div>
+      </div>
+
+      <div class="form-group row m-2">
+        <div class="col-sm-10 offset-sm-2">
+          <%= f.submit "Sign up", class: "btn btn-danger" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="form-group row mb-2">
+      <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>

@@ -14,10 +14,14 @@ class Ability
       can :read, Article
       can :update, Article
     elsif user.user?
-      can :manage, Article
+      can :read, Article
+      can :update, Article 
+      can :destroy ,Article 
+      can :create, Article
       # Define other abilities for regular users here
     else
       can :read, Article
+      can :create ,Article
     end
       # Define abilities for guest users here
       # return unless user.present?

@@ -1,23 +1,24 @@
-<h1 class="text-center"><%= @article.title %></h1>
+<div class="container">
+  <h1 class="text-center mb-4"><%= @article.title %></h1>
 
-<p class="text-center"><%= @article.body %></p>
+  <p class="text-center mb-4"><%= @article.body %></p>
+  <div class="text-muted text-center mb-4">
+    <%= time_ago_in_words(@article.created_at) %> ago 
+  </div>
 
-<ul>
- <% if @article.user_id == current_user.id %>
+  <ul class="list-inline mb-4">
+    <% if @article.user_id == current_user.id %>
+      <li class="list-inline-item"><%= link_to "Edit", edit_article_path(@article), class: "btn btn-warning" %></li>
+      <li class="list-inline-item"><%= link_to "Destroy", article_path(@article), class: "btn btn-danger", data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      } %></li>
+    <% end %>
+  </ul>
 
-  <li><%= link_to "Edit", edit_article_path(@article),class:"custom-link text-link" %></li>
-  <li><%= link_to "Destroy", article_path(@article),class:"custom-link text-link", data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
-  <%end%>
-  
-  
-   
-</ul>
+  <h2 class="mt-5 mb-3">Comments</h2>
+  <%= render @article.comments %>
 
-<h2>Comments</h2>
-<%=render @article.comments %>
-
-<h2>Add a comment:</h2>
-<%= render 'comments/form'%>
+  <h2 class="mt-5 mb-3">Add a comment:</h2>
+  <%= render 'comments/form' %>
+</div>

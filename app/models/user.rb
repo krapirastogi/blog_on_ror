@@ -6,8 +6,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :lockable
-  enum gender: [:unknown, :male, :female] 
-  enum role: {admin:1, moderator:2}  
+
+  enum :gender, [:male, :female] 
+
+  enum role: {user:0,admin:1, moderator:2}  
      
 
          
