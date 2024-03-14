@@ -13,7 +13,7 @@ if user.present?
     elsif user.moderator?
       can :read, Article
       can :update, Article
-      cannot :destroy , Article, hidden:true
+      # cannot :destroy , Article, hidden:true
     elsif user.user?
       can :read, Article ,user_id:user.id
       can :update, Article ,user_id:user.id
