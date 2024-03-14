@@ -25,11 +25,15 @@
             <td><%=article.user.name%></td>
             <td>
               <ul class="list-inline">
-              
+              <% if can? :update,article %>
                   <li class="list-inline-item"><%= link_to "Edit Article", edit_article_path(article.id), class: "btn btn-warning m-1" %></li> 
+                <%end%>
+               <% if can? :read,article %>
                   <li class="list-inline-item"><%= link_to "Show Article", article_path(article.id), class: "btn btn-primary m-1" %></li>
+                <%end%>
+                <% if can? :destroy,article %>
                   <li class="list-inline-item"><%= link_to "Delete Article", article_path(article.id), class: "btn btn-danger m-1", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>
-              
+                <%end%>
               </ul>
             </td>
             <td><%= article.created_at.strftime("%m/%d/%Y") %></td>

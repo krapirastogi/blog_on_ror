@@ -7,12 +7,13 @@ class Ability
     # Define abilities for the user here. For example:
     #
     user ||= User.new # Guest user (not logged in)
-
+if user.present?
     if user.admin?
       can :manage, :all
     elsif user.moderator?
       can :read, Article
       can :update, Article
+      cannot :destroy , Article, hidden:true
     elsif user.user?
       can :read, Article ,user_id:user.id
       can :update, Article ,user_id:user.id
@@ -21,6 +22,9 @@ class Ability
     else
       can :read, Article
     end
+  else
+    can :read,:sign_up
+  end
       # Define abilities for guest users here
       # return unless user.present?
     # can :read,Article :all 

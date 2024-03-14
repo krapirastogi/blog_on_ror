@@ -17,11 +17,12 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    # @article=Article.find_by_id(params[:id])
-    unless @article.present?
-      flash[:notice]="Article id not found"
-      redirect_to articles_path
-    end
+    @article=Article.find_by_id(params[:id])
+    authorize! :read,@article
+    # unless @article.present?
+    #   flash[:notice]="Article id not found"
+    #   redirect_to articles_path
+    # end
     
      
   end
