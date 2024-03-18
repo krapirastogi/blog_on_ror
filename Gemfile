@@ -27,6 +27,7 @@ gem 'cancancan'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
+gem 'bootstrap'
 gem 'sassc-rails'
 
 gem 'jquery-rails'
