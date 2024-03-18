@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :articles do 
     resources :comments 
   
-  delete 'article'
+  # delete 'article'
   end
   
 end

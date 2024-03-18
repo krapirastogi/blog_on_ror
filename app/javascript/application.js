@@ -1,4 +1,8 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "@hotwired/turbo-rails"
-import "controllers"
-import "./validate"
+//= require jquery
+
+import "@hotwired/turbo-rails";
+import "controllers";
+import "./validate";
+import "./delete";
+

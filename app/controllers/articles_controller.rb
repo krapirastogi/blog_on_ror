@@ -37,8 +37,11 @@ class ArticlesController < ApplicationController
     # print(article_params)
     # gets.chomp
     @article = Article.new(article_params)
+    # if @article.images.attached?
+    #   @article.images.attach(params[:images])
+    # end
     @article.user_id = current_user.id
-   
+    # print (@article)
     if @article.save
       puts (@article)
       redirect_to @article
@@ -86,7 +89,7 @@ class ArticlesController < ApplicationController
  
   private
   def article_params
-    params.require(:article).permit(:title, :body ,:user_id,:status)
+    params.require(:article).permit(:title, :body ,:user_id,:status,images:[])
   end
   
 end

@@ -2,6 +2,12 @@
   <h1 class="text-center mb-4"><%= @article.title %></h1>
 
   <p class="text-center mb-4"><%= @article.body %></p>
+  <%
+=begin%>
+ <p class="text-center mb-4"><%= @article.images.attached?
+ %></p> 
+<%
+=end%>
   <div class="text-muted text-center mb-4">
     <%= time_ago_in_words(@article.created_at) %> ago 
   </div>

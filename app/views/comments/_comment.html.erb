@@ -1,4 +1,5 @@
 <% unless comment.archived? %>
+  <div id="comment-<%=comment.id%>">
   <div>
     <strong>Commenter:</strong>
     <%= comment.commenter %>
@@ -15,9 +16,12 @@
   </div>
 
   <div>
-    <%= link_to "Destroy Comment", [comment.article, comment],class:"custom-link", data: {
+    <%= link_to "Destroy Comment", [comment.article, comment],class:"delete-comment-link custom-link",  data: {
+
+                  comment_id: comment.id, 
                   turbo_method: :delete,
                   turbo_confirm: "Are you sure?"
                 } %>
+  </div>
   </div>
 <% end %>

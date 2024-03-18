@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+      skip_before_action :verify_authenticity_token, only: [:destroy]
+
     http_basic_authenticate_with name: "Krapi", password: "abcd1234", only: :destroy
 
    
@@ -9,11 +11,15 @@ class CommentsController < ApplicationController
     end
     
     def destroy
-        @article = Article.find(params[:article_id])
-        @comment = @article.comments.find(params[:id])
-        @comment.destroy
-        redirect_to article_path(@article), status: :see_other
+      @article = Article.find(params[:article_id])
+      @comment = @article.comments.find(params[:id])
+      if @comment.destroy
+        render json: { result: 'success' }
+      else
+        render json: { result: 'fail' }
+      end
     end
+    
     private
       def comment_params
         params.require(:comment).permit(:commenter, :body ,:status)
