@@ -23,7 +23,7 @@ if user.present?
       can :read, Article
     end
   else
-    can :read,:sign_up
+    can :sign_up
   end
       # Define abilities for guest users here
       # return unless user.present?

@@ -1,14 +1,16 @@
-$(document).ready( function () {
+document.addEventListener("DOMContentLoaded", function() {
   var emailField = document.getElementById("email");
   var passwordField = document.getElementById("password");
 
-  emailField.addEventListener("keyup", function () {
-    validateEmail(emailField.value);
-  });
+  if (emailField && passwordField) {
+    emailField.addEventListener("keyup", function () {
+      validateEmail(emailField.value);
+    });
 
-  passwordField.addEventListener("keyup", function () {
-    validatePassword(passwordField.value);
-  });
+    passwordField.addEventListener("keyup", function () {
+      validatePassword(passwordField.value);
+    });
+  }
 
   function validateEmail(email) {
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

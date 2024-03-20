@@ -16,11 +16,7 @@
   </div>
 
   <div>
-    <%= link_to "Destroy Comment", [comment.article, comment],class:"delete-comment-link custom-link",  data: {
-
-                  comment_id: comment.id, 
-                  turbo_method: :delete,
-                  turbo_confirm: "Are you sure?"
+    <%= link_to "Destroy Comment", [comment.article, comment],remote: true,class:"delete-comment-link custom-link",  data:{comment_id: comment.id, turbo_method: :delete,turbo_confirm: "Are you sure?"
                 } %>
   </div>
   </div>
