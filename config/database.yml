@@ -8,7 +8,10 @@
 #
 # And be sure to use new-style password hashing:
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
+
 #
+
+  
 default: &default
   adapter: mysql2
   encoding: utf8mb4
@@ -18,8 +21,16 @@ default: &default
   socket: /var/run/mysqld/mysqld.sock
 
 development:
-  <<: *default
-  database: database_test_development
+  primary:
+    <<: *default
+    database: database_test_development
+  krapi:
+    database: blog_psql_db
+    username: postgres
+    password: krapi@123
+    adapter: postgresql
+    host: localhost
+    migrations_paths: db/pqsl_migrate
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

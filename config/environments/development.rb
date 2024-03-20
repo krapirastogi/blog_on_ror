@@ -63,7 +63,7 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
-
+ 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
@@ -71,23 +71,36 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Raise error when a before_action's only/except options reference missing actions
-  config.action_controller.raise_on_missing_callback_actions = true
-
-  config.action_controller.raise_on_missing_callback_actions = true
-  config.action_controller.raise_on_missing_callback_actions = true
-  config.action_mailer.delivery_method = :sendmail
+  # config.action_controller.raise_on_missing_callback_actions = true
+  
+  # config.action_controller.raise_on_missing_callback_actions = true
+  # config.action_controller.raise_on_missing_callback_actions = true
+  # config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.raise_delivery_errors = false
+  # config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'krapirastogi@gmail.com'}
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-  address: 'smtp.gmail.com',
-  port: 587,
-  domain: 'gmail.com',
-  user_name: 'krapirastogi@gmail.com',
-  password: ENV['password'],
-  authentication:'plain',
-  enable_starttls_auto: true  }
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  
+  # config.action_mailer.default_options = {from: 'krapirastogi@gmail.com'}
+  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { 
+    :enable_starttls_auto => true,
+    :address => 'smtp.sendgrid.net',
+    :port => '2525',
+    :domain => ENV['SENDGRID_DOMAIN'],
+    :authentication => :plain,
+    :user_name => 'apikey',
+    :password => ENV['SENDGRID_API_KEY']
+
+  }
+
+  # config.action_mailer.smtp_settings = {
+  # address: 'smtp.gmail.com',
+  # port: 587,
+  # domain: 'gmail.com',
+  # user_name: 'krapirastogi@gmail.com',
+  # password: ENV['password'],
+  # authentication:'plain',
+  # enable_starttls_auto: true  }
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
 end
