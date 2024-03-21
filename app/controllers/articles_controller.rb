@@ -89,7 +89,7 @@ class ArticlesController < ApplicationController
  
   private
   def article_params
-    params.require(:article).permit(:title, :body ,:user_id,:status,images:[])
+    params.require(:article).permit(:title, :body ,:user_id,:status)
   end
   
 end
