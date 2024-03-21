@@ -13,14 +13,17 @@ if user.present?
     elsif user.moderator?
       can :read, Article
       can :update, Article
+      can :create ,Article
       # cannot :destroy , Article, hidden:true
     elsif user.user?
       can :read, Article ,user_id:user.id
       can :update, Article ,user_id:user.id
       can :destroy ,Article ,user_id:user.id
+      can :create ,Article
       # Define other abilities for regular users here
     else
       can :read, Article
+      can :create, Article
     end
   else
     can :sign_up

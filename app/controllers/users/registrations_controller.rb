@@ -24,7 +24,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    super
+    super do |resource|
+      UserRegistrationService.call(resource)
+    end
   end
 
   # DELETE /resource
