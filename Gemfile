@@ -17,6 +17,7 @@ gem 'pg', '~> 1.5', '>= 1.5.6'
 gem 'spreadsheet'
 gem 'prawn'
 gem 'prawn-table', '~> 0.1.0'
+gem "roo", "~> 2.10.0"
 
 
 gem 'devise'

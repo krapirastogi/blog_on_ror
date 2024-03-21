@@ -1,7 +1,7 @@
 module Record
     class UserRecord
-        def self.create
-            excel_obj = Spreadsheet::Workbook.new # We have created a new object of the Spreadsheet book
+       def self.create
+       excel_obj = Spreadsheet::Workbook.new # We have created a new object of the Spreadsheet book
 
             #sheet = book.create_worksheet(name: 'First sheet') # We are creating new sheet in the Spreadsheet(We can create multiple sheets in one Spreadsheet book)
       sheet = excel_obj.create_worksheet :name => "User Record"
@@ -20,8 +20,28 @@ module Record
         sheet.row(index + 1).push(user.name, user.gender, user.email,user.role)
       end
 
-      excel_obj.write Rails.root.join('app', 'assets', 'images', 'user_records.xls')
+      excel_obj.write Rails.root.join('app', 'assets', 'images', 'user_records.xlsx')
         end
-    end
     
+    def self.read
+        excel_path = Rails.root.join('app', 'assets', 'images', 'user_records3.xlsx')
+        puts excel_path
+        excel = Roo::Spreadsheet.open(excel_path, extension: :xlsx)
+        excel.info
+
+        header = excel.row(1)
+        users_data = []
+        
+        (2..excel.last_row).each do |i|
+          row_data = {}
+          header.each_with_index do |column, index|
+            row_data[column.downcase.gsub(' ', '_').to_sym] = excel.cell(i, index + 1)
+          end
+          users_data << row_data
+        end
+  
+        users_data
+      end
+  
+    end
 end
