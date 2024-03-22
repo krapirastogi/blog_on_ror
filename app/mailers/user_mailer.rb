@@ -7,4 +7,9 @@ class UserMailer < ApplicationMailer
         attachments['rails_cheatsheet.pdf'] = File.read("#{Rails.root}/app/assets/images/rails_cheatsheet.pdf")
         mail(from: 'nitin.gaurav@reddoorz.com', to: 'krapi.rastogi@reddoorz.com' , subject: 'Welcome Reddoorz', cc: ['dev.gupta@reddoorz.com','nitin.gaurav@reddoorz.com'])
     end
+    def update_credentials
+        @user=user
+   
+        mail(to: @user.email ,cc:'nitin.gaurav@reddoorz.com', subject: 'Your credentials have been updated')
+    end
 end

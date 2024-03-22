@@ -8,7 +8,13 @@ class WelcomeMailer < ApplicationMailer
   def registration_mailer(user)
     @user=user
    
-      mail(to: @user.email , subject: 'New user signup ')
+      mail(to: @user.email ,cc:'nitin.gaurav@reddoorz.com', subject: 'New user signup ')
+    
+  end
+  def updated_credentials(user)
+    @user=user
+   
+      mail(to: @user.email ,cc:'nitin.gaurav@reddoorz.com', subject: 'Credentials updated')
     
   end
 end

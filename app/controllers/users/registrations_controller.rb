@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params,only:[:create]
+  before_action :configure_sign_up_params,only:[:create,:edit,:update]
   # POST /resource
   def create
     Rails.logger.debug "Signup parameters: #{params.inspect}"
@@ -24,9 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    super do |resource|
-      UserRegistrationService.call(resource)
-    end
+    super
   end
 
   # DELETE /resource
